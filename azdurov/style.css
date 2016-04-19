@@ -1,0 +1,48 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    height: 40px;
+    width: 100%;
+    background-color: #57ffae;
+    font-size: x-large;
+    line-height: 0;
+    border: 1px solid black;
+}
+
+.sidebar {
+    float: left;
+    width: 200px;
+    font-size: medium;
+    background-color: #fffd59;
+}
+
+.content {
+    margin: 40px 5px 5px 205px;
+    min-height: calc(100vh - 65px);
+}
+
+input[type="text"] {
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.table1 {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td {
+    border: 1px solid black;
+}
+
+.footer {
+    height: 20px;
+    background-color: #c4b2ff;
+    text-align: center;
+    font-size: small;
+}
