@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Первая страница</title>
+    <meta  http-equiv="Content-Type" content="text/html"; charset=UTF-8>
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="media-queries.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<header>
+    <h1 class="center"> Название сайта </h1>
+</header>
+<nav>
+    <ul id = "menu">
+        <p><li>Элемент меню 1</li></p>
+        <p><li>Элемент меню 2</li>
+        <p><li>Элемент меню 3</li>
+        <p><li>Элемент меню 4</li>
+        <p><li>Элемент меню 5</li>
+        <p><li>Элемент меню 6</li>
+        <p><li>Элемент меню 7</li>
+        <p><li>Элемент меню 8</li>
+    </ul>
+</nav>
+<div id = "content">
+    <h2>Пример формы регистрации</h2>
+    <form action="somescript.php" method="post">
+        <input type="text" name="username" size="35"  class = "right"  placeholder="Введите имя, фамилию, отчество"/>
+        <input type="email" name="email" size="35"  placeholder="Введите адрес электронной почты"/>
+        <p><input type="password" name="username" class = "right" size="35"  placeholder="Придумайте пароль"/></p>
+        <input type="password" name="username" size="35"  placeholder="Введите пароль повторно"/>
+        <div>
+            <p> Пол:</p>
+            <p><input type="radio" name="gender" value="male" checked="checked" /> Мужчина</p>
+            <p><input type="radio" name="gender" value="female" /> Женщина</p>
+            <p><input type="tel" name="telephone" pattern="8[0-9]{10}" size="35" placeholder="Введите телефон в формате 8XXXXXXXXXX"/></p>
+            <p><input type="submit" />
+                <input type="reset" /></p>
+    </form>
+    <table>
+        <caption><h2>Пример таблицы</h2></caption>
+        <thead>
+        <tr>
+            <th>Заголовок 1</th>
+            <th>Заголовок 2</th>
+            <th>Заголовок 3</th>
+        </tr>
+        </thead>
+        <tfoot>
+        <tr>
+            <th>Нижний колонтитул 1</th>
+            <th>Нижний колонтитул 2</th>
+            <th>Нижний колонтитул 3</th>
+        </tr>
+        </tfoot>
+        <tbody>
+        <tr>
+            <td>Ячейка 1</td>
+            <td>Ячейка 2</td>
+            <td>Ячейка 3</td>
+        </tr>
+        <tr>
+            <td>Ячейка 4</td>
+            <td>Ячейка 5</td>
+            <td>Ячейка 6</td>
+        </tr>
+        <tr>
+            <td>Ячейка 7</td>
+            <td>Ячейка 8</td>
+            <td>Ячейка 9</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="clear"></div>
+<footer>
+    <p id="footertext">Copyright &copy;. All rights reserved. Design by Butkevich Alena</p>
+</footer>
+</body>
+</html>
