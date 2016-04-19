@@ -1,0 +1,408 @@
+* {
+    font-family: sans-serif;
+    box-sizing: border-box;
+    color: #434b4d;
+}
+
+body {
+    
+    margin: 0;
+    font-size: 1em;
+}
+
+.main-item {
+    
+    display: none;
+    
+}
+
+a {
+    
+    text-decoration: none;
+    
+}
+
+li a:hover {
+    
+    color: #ad005f;
+}
+
+a:visited {
+    
+    color: #000000;
+    
+}
+
+p {
+    padding: 10px;
+    text-indent: 2em;
+    line-height: 1.5em;
+    margin: 0;
+    font-size: 1em;
+
+}
+
+h4 {
+    
+    margin: 10px 0 10px 0;
+    color: #3d888f;
+    font-size: 1.2em;
+}
+
+
+#list {
+    
+padding: 0;
+text-align: center;
+    
+}
+
+#logo {
+    
+    float: left;
+    display: inline;
+    margin: 0;
+    text-align: center;
+    width: 20%;
+    padding: 10px;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #808080;
+    text-shadow: 1px 1px 3px #FFFFFF;
+    
+}
+
+#menu {
+    
+    display: inline;
+    width: 100%;
+    text-align: center;
+    max-width: 1000px;
+    background-color: #f5f5f5;
+    position: fixed;
+    margin: 0;
+    z-index: 1000;
+    border-top: solid 10px #FFFFFF;
+    border-bottom: solid 10px #FFFFFF;
+        
+}
+
+#sidebar {
+    
+    position: relative;
+    top: 70px;
+    width: 20%;
+    max-width: 200px;
+    padding: 5px;
+    float: left;
+    text-align: center;
+    
+}
+
+#main-content {
+    
+    position: relative;
+    top: 70px;
+    padding: 5px;
+    float: left;
+    width: 80%;
+    max-width: 800px;
+    margin: 0;
+    
+}
+
+#sidebar-list li{
+    
+    margin: 10px;
+    display: block;
+    font-size: 1.2em;
+ 
+    
+}
+
+#sidebar-list {
+    
+    padding: 0 10px 0 10px;
+ 
+}
+
+#container {
+    
+    margin: auto;
+    max-width: 1000px;
+    
+}
+
+#menu li  {
+    
+    display: inline;
+    padding: 1em;
+    color: #000000;
+    font-weight: bold;
+        
+}
+
+#sidebar-list a {
+    
+    border-bottom: dotted 1px #000000;
+    
+}
+
+#sidebar-list li {
+    
+   margin: 20px 0 20px 0;
+    
+}
+
+#text-input {
+    
+    padding: 5px 10px 5px 10px;
+    width: 100%;
+    height: 40px;
+    font-size: 1.1em;
+    border: 2px solid #7fb5b5;
+    border-radius: 5px;
+    
+}
+
+#form {
+    
+    margin: 10px;
+}
+
+#radio-form {
+    
+    margin: 5px 0 5px 0;
+}
+
+#submit-button {
+    
+    display: block;
+    width: 120px;
+    height: 40px;
+    margin: 10px auto;
+    font-size: 1.1em;
+    font-weight: bold;
+    background-color: #2a8d9c;
+    border: none;
+    color: #FFFFFF;
+    cursor: pointer;
+        
+}
+
+#table {
+    
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+    
+}
+
+#table td, th {
+    
+    width: 25%;
+    padding: 5px;
+    border: solid 1px #8d96a1; 
+}
+
+#table th {
+    
+    background-color: #f5f5f5;
+    
+}
+
+#table caption {
+    
+    margin: 10px;
+}
+
+@media (max-width:768px) and (min-width:621px) {
+    
+    #logo {
+        
+        width: 100%;
+    }
+    
+    #menu {
+        
+        width: 100%;
+    }
+    
+    #main-content {
+        
+        width: 100%;
+    }
+    
+    #sidebar {
+    
+        position: relative;
+        top: 90px;
+        width: 100%;
+        max-width: 100%;
+        padding: 5px;
+        text-align: center;
+    
+    }
+    
+    #sidebar h4 {
+        
+        display: none;
+    }
+    
+    #sidebar-list li {
+    
+        display: inline;
+        padding: 10px;
+
+    }
+    
+    #sidebar-list {
+        
+        width: 100%;
+    }
+    
+
+    
+    
+}
+
+@media (max-width: 620px) {
+    
+    #logo {
+        
+        width: 80%;
+        text-align: left;
+        padding-left: 20px;
+        float: left;
+    }
+    
+    #menu {
+        
+        vertical-align: middle;
+        
+    }
+    
+    .main-item {
+        
+        position: relative;
+        display: inline;
+        border: 1px solid #777;
+        font-size: 2em;
+        background-color: #FFFFFF;
+        padding: 0 10px 0 10px;
+        top: 6px;
+    }
+    
+    #list {
+        
+        display: none;
+        
+    }
+    
+    .main-item:focus ~ #list, .main-item:active ~ #list, #list:hover {
+    
+    display: block;
+    background-color: #FFFFFF;
+    
+    }
+    
+    nav #list li {
+        
+        display: list-item;
+        padding: 10px;
+        border-bottom: 1px dotted #000000;
+        font-size: 1.1em;
+        
+    }
+    
+    
+    #sidebar {
+    
+        position: relative;
+        top: 50px;
+        width: 100%;
+        max-width: 100%;
+        padding: 5px;
+        text-align: center;
+    
+    }
+    
+    #sidebar h4 {
+        
+        display: none;
+    }
+    
+    #sidebar-list li {
+    
+        display: inline;
+        padding: 10px;
+        font-size: 1em;
+        font-weight: bold;
+        line-height: 1.5em;
+
+    }
+    
+    #sidebar-list {
+        
+        width: 100%;
+    }
+    
+    #main-content {
+        
+        width: 100%;
+        top: 25px;
+
+    }
+    
+    #table thead {
+        
+        display: none;
+    }
+    
+    #table #table-labels {
+        
+        display: none;
+        
+    }
+    
+    #table tr {
+      
+    margin: 5px;
+    display: block;
+    border: 1px solid #a0a0a0;
+    
+    }
+    
+    #table td {
+      
+      display: block;
+      text-align: right;
+      border: 0;
+      border-bottom: 1px dotted #a0a0a0;
+      width: 100%;
+    
+    }
+    
+    #table td:last-child {
+      
+      border-bottom: 0;
+    
+    }
+    
+    #table td:before {
+      
+      content: attr(data-label);
+      float: left;
+      display: block;
+      font-weight: bold;
+      padding-right: 20px;
+    
+    }
+
+    #table td, th {
+        
+        padding: 10px;
+
+    }
+    
+}
