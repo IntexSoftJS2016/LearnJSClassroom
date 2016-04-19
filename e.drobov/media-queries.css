@@ -1,0 +1,81 @@
+@media screen and (max-width: 980px) {
+
+    nav{
+        width: 26%;
+    }
+    #content {
+        width: 70%;
+        padding: 1%;
+        margin-top: 10px;
+        background: #00693e;
+    }
+    table{
+        width: 90%;
+    }
+    #myform{
+        width: 100%;
+    }
+    #button{
+        position: absolute;
+        right:50px;
+        bottom: 10px;
+        margin-right: 50PX;
+    }
+
+}
+
+@media screen and (max-width: 650px) {
+    #header {
+        height: auto;
+    }
+
+    #menu{
+        position: relative;
+    }
+    #content {
+        width: 100%;
+        float: none;
+        margin-left: 0;
+        font-size: 90%;
+        padding: 10px 10px;
+        background: #00693e;
+
+    }
+
+
+    nav {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    html {
+        -webkit-text-size-adjust: none;
+    }
+    #menu a {
+        font-size: 90%;
+        padding: 10px 8px;
+    }
+    nav{
+        display: none;
+    }
+
+    #content {
+        width: 100%;
+        float: none;
+        margin-left: 0;
+        font-size: 90%;
+        padding: 10px 10px;
+        background: #4e1609;
+
+    }
+    footer{
+        display: none;
+    }
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
