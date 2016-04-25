@@ -18,7 +18,7 @@ for (i = 0; i < worldLength; i++) {
     world[i] = [];
     for (j = 0; j < worldLength; j++) {
         var object;
-        if (i === 0 || i === worldLength - 1 || j === 0 || j === worldLength - 1 || Math.random() > 0.8) {
+        if (i === 0 || i === worldLength - 1 || j === 0 || j === worldLength - 1 || Math.random() > 0.85) {
             object = wall;
         } else {
             object = freePlace;
@@ -54,23 +54,26 @@ function placeObjects(object, objectCount) {
         /*если по случайному расположению ячейка пустая, то располагаем объект*/
         if (world[randomField][randomColumn] == freePlace) {
             world[randomField][randomColumn] = object;
-            smartPlantEaterPositions[i][0] = randomField;
-            smartPlantEaterPositions[i][1] = randomColumn;
+            smartPlantEaterPositions[0][i] = randomField;
+            smartPlantEaterPositions[1][i] = randomColumn;
             i++;
         }
     }
 }
 
 /*перемещения с заданным интрервалом времени*/
-setInterval('moveSmartPlantEater ()', 500);
+setInterval('moveSmartPlantEater ()', 50);
 
 /*передвигаем объекты*/
 function moveObject(i, shiftX, shiftY, x, y) {
-    if (world[x + shiftX][y + shiftY] == freePlace || world[x + shiftX][y + shiftY] == plant) {
+    if (world[x + shiftX][y + shiftY] == wall) {
+        shiftX *= -1;
+        shiftY *= -1;
+    } else if (world[x + shiftX][y + shiftY] == freePlace || world[x + shiftX][y + shiftY] == plant) {
         world[x + shiftX][y + shiftY] = smartPlantEater;
         world[x][y] = freePlace;
-        smartPlantEaterPositions[i][0] += shiftX;
-        smartPlantEaterPositions[i][1] += shiftY;
+        smartPlantEaterPositions[0][i] += shiftX;
+        smartPlantEaterPositions[1][i] += shiftY;
     }
 }
 
@@ -92,7 +95,7 @@ function moveSmartPlantEater () {
                 shiftY = -1;
                 break;
         }
-        moveObject(i, shiftX, shiftY, smartPlantEaterPositions[i][0], smartPlantEaterPositions[i][1]);
+        moveObject(i, shiftX, shiftY, smartPlantEaterPositions[0][i], smartPlantEaterPositions[1][i]);
     }
     document.body.innerHTML="";
     showWorld();
@@ -104,7 +107,7 @@ function showWorld() {
     for (var i = 0; i < worldLength; i++) {
         document.write("<tr>");
         for (j = 0; j < worldLength; j++) {
-            document.write("<td width=10%>" + world[i][j] + "</td>");
+            document.write("<td>" + world[i][j] + "</td>");
         }
     }
     document.write("</table>");
