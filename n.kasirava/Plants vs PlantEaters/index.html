@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+</head>
+<body>
+<div id="main">
+    <div id="form">
+        <h4>Введите исходные данные</h4>
+    <form id="init">
+        <p>Количество растений (<80)<input type="number" max="100" id="plants"></p>
+        <p>Количество травоядных (<80)<input type="number" max="100" id="plantEaters"></p>
+        <p>Количество хищников (<80)<input type="number" max="100" id="predators"></p>
+        <input type='button' value="СТАРТ!" class="button" onClick="startGame()">
+    </form>
+        </div>
+    <div id="canvasDiv">
+        <span>Растения:<span id="plantsNumber"></span></span>
+        <span>Травоядные:<span id="plantEatersNumber"></span></span>
+        <span>Хищники:<span id="predatorsNumber"></span></span>
+    <canvas id="canvas"></canvas>
+        <p>Время: <span id="timer"></span>
+    </div>
+    <div id ='gameOver'>
+        <h4>Игра закончена!</h4>
+        <p>Ваше время:<span id="time"></span></p>
+        <input type='button' value="СНАЧАЛА" class="button" onClick="reloadPage()">
+    </div>
+    </div>
+</body>
+<script src="main.js"></script>
+<script src="objects.js"></script>
+<script src="common.js"></script>
+</html>
