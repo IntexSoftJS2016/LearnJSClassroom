@@ -1,13 +1,22 @@
 /*объявляем необходимые переменные*/
 var world = [];
-var worldLength, plantCount, smartPlantEaterCount, freePlaceCount = 0, sum = 0, i, j;
 var wall = '#';
-var smartPlantEater = '0';
-var plant = '*';
 var freePlace = ' ';
-var smartPlantEaterPositions = [];
-smartPlantEaterPositions[0] = [];
-smartPlantEaterPositions[1] = [];
+var worldLength, freePlaceCount = 0, i, j;
+
+function Plant() {
+    this.design = '';
+    this.count = 0;
+}
+
+function Animal() {
+    this.design = '';
+    this.count = 0;
+    this.aggressive = false;
+    this.positions = [];
+    this.positions[0] = [];
+    this.positions[1] = [];
+}
 
 do {
     worldLength = prompt ('Введите размерность мира (x*x): ');
@@ -18,7 +27,7 @@ for (i = 0; i < worldLength; i++) {
     world[i] = [];
     for (j = 0; j < worldLength; j++) {
         var object;
-        if (i === 0 || i === worldLength - 1 || j === 0 || j === worldLength - 1 || Math.random() > 0.85) {
+        if (i === 0 || i === worldLength - 1 || j === 0 || j === worldLength - 1 || Math.random() > 0.9) {
             object = wall;
         } else {
             object = freePlace;
@@ -28,12 +37,23 @@ for (i = 0; i < worldLength; i++) {
     }
 }
 
+var plant = new Plant();
+plant.design = '*';
+
+var plantEater = new Animal();
+plantEater.design = '0';
+
+var hunter = new Animal();
+hunter.design = '8';
+hunter.aggressive = true;
+
 do {
-    smartPlantEaterCount = parseInt (prompt ('Введите количество травоядных: '));
-    plantCount = parseInt (prompt ('Введите количество растений: '));
-    sum = smartPlantEaterCount + plantCount;
+    plantEater.count = parseInt (prompt ('Введите начальное количество травоядных: '));
+    hunter.count = parseInt (prompt ('Введите количество охотников: '));
+    plant.count = parseInt (prompt ('Введите количество растений: '));
+    var sum = plantEater.count + hunter.count + plant.count;
     if (sum > freePlaceCount) {
-        alert('Неверные данные. Свободных ячеек не хватит для всех введенных объектов');
+        alert('Неверные данные. Свободных ячеек не хватит для всех введенных объектов.');
     }
 } while (sum > freePlaceCount);
 
@@ -41,45 +61,52 @@ function getRandom(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
 }
 
-/*размещаем животных и растения*/
-placeObjects(smartPlantEater, smartPlantEaterCount);
-placeObjects(plant, plantCount);
-
-function placeObjects(object, objectCount) {
+function placeObjects(object, count) {
     var randomField, randomColumn;
-    for (i = 0; i < objectCount; ) {
+    for (i = 0; i < count; ) {
         randomField = getRandom(1, world.length - 1);
         randomColumn = getRandom(1, world.length - 1);
 
         /*если по случайному расположению ячейка пустая, то располагаем объект*/
         if (world[randomField][randomColumn] == freePlace) {
-            world[randomField][randomColumn] = object;
-            smartPlantEaterPositions[0][i] = randomField;
-            smartPlantEaterPositions[1][i] = randomColumn;
+            world[randomField][randomColumn] = object.design;
+            /*если размещаемый объект - животное, то сохранить его координаты*/
+            if (object == Animal) {
+                if (count == 1) {
+                    object.positions[0][object.count] = randomField;
+                    object.positions[1][object.count] = randomColumn;
+                } else {
+                    object.positions[0][i] = randomField;
+                    object.positions[1][i] = randomColumn;
+                }
+            }
             i++;
         }
     }
 }
 
-/*перемещения с заданным интрервалом времени*/
-setInterval('moveSmartPlantEater ()', 50);
+/*размещаем животных и растения*/
+placeObjects(plant, plant.count);
+placeObjects(plantEater, plantEater.count);
+placeObjects(hunter, hunter.count);
 
-/*передвигаем объекты*/
-function moveObject(i, shiftX, shiftY, x, y) {
-    if (world[x + shiftX][y + shiftY] == wall) {
-        shiftX *= -1;
-        shiftY *= -1;
-    } else if (world[x + shiftX][y + shiftY] == freePlace || world[x + shiftX][y + shiftY] == plant) {
-        world[x + shiftX][y + shiftY] = smartPlantEater;
-        world[x][y] = freePlace;
-        smartPlantEaterPositions[0][i] += shiftX;
-        smartPlantEaterPositions[1][i] += shiftY;
-    }
+/*перемещения с заданным интрервалом времени*/
+setInterval('runTheLifeOfTheWorld()', 50);
+
+function runTheLifeOfTheWorld () {
+    moveObjects(hunter);
+    moveObjects(plantEater);
+    document.body.innerHTML="";
+    showWorld();
 }
 
-function moveSmartPlantEater () {
-    for (i = 0; i < smartPlantEaterCount; i++) {
+/*передвигаем объекты*/
+function moveObjects(object) {
+    for (i = 0; i < object.count; i++) {
+        /*случайное направление движения*/
         var shiftX = 0, shiftY = 0;
+        var x = object.positions[0][i];
+        var y = object.positions[1][i];
         var randomDirection = getRandom(1, 4);
         switch (randomDirection) {
             case 1:
@@ -95,14 +122,50 @@ function moveSmartPlantEater () {
                 shiftY = -1;
                 break;
         }
-        moveObject(i, shiftX, shiftY, smartPlantEaterPositions[0][i], smartPlantEaterPositions[1][i]);
+        if (world[x + shiftX][y + shiftY] == wall) {
+            shiftX *= -1;
+            shiftY *= -1;
+        }
+        /*если два травоядных*/
+        if (world[x + shiftX][y + shiftY] == plantEater.design && object.design == plantEater.design) {
+            /*то размножить*/
+            placeObjects(object, 1);
+            object.count++;
+        }
+        /*если животное не хищник, перед которым не другой хищник и не растение*/
+        else if (world[x + shiftX][y + shiftY] != hunter.design || (!object.aggressive &&
+            world[x + shiftX][y + shiftY] != plant.design)) {
+            /*то переместить объект*/
+            object.positions[0][i] += shiftX;
+            object.positions[1][i] += shiftY;
+            world[x][y] = freePlace;
+            /*если впереди было растение*/
+            if (world[x + shiftX][y + shiftY] == plant.design) {
+                /*съесть растение*/
+                plant.count--;
+            }
+            /*если впереди было травоядное*/
+            else if (world[x + shiftX][y + shiftY] == plantEater.design) {
+                /*удалить координаты съеденого*/
+                for (var j = 0; j < plantEater.count; j++) {
+                    if (object.positions[0][i] == plantEater.positions[0][j] &&
+                        object.positions[1][i] == plantEater.positions[1][j]) {
+                        plantEater.positions[0][j] = plantEater.positions[0][plantEater.count - 1];
+                        plantEater.positions[1][j] = plantEater.positions[1][plantEater.count - 1];
+                        break;
+                    }
+                }
+                plantEater.count--;
+            }
+            world[x + shiftX][y + shiftY] = object.design;
+        }
     }
-    document.body.innerHTML="";
-    showWorld();
 }
 
 /*вывод "мира" на экран*/
 function showWorld() {
+    /*document.getElementById('statusInfo').innerHTML = Травоядных: ' + plantEater.count + ', Хищников: ' +
+    hunter.count + ', Растений: ' + plant.count;*/
     document.write("<table>");
     for (var i = 0; i < worldLength; i++) {
         document.write("<tr>");
