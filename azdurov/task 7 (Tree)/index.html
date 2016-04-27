@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="script.js"></script>
+</head>
+<body>
+<button data-bind='click:AddRootNode'>Add New Root Node</button>
+<button data-bind='click:AddChildNode,visible: tree.selectedNode'>Add Child toSelected Node</button>
+<button data-bind='click:RemoveNode,visible: tree.selectedNode'>Delete Selected Node</button>
+
+<div class='tree'  data-bind='with: tree'>
+    <ul data-bind='template: {name:"treeNode", foreach: children}'>
+    </ul>
+</div>
+
+<div data-bind='with: tree.selectedNode'>
+    <!-- ko with: data -->
+    <input data-bind='value:name'>
+    <!-- /ko   -->
+</div>
+
+
+<script id='treeNode' type='text/html'>
+    <li data-bind='css:{closed:isClosed,open:isOpen, leaf: isLeaf, last: isLast}, click: toggleOpen, clickBubble: false'>
+        <ins></ins>
+        <span class='caption' data-bind='text:caption, css: {selected:isSelected},click:toggleSelection, clickBubble: false'></span>
+        <ul data-bind='template: {name:"treeNode", foreach: children}'>
+        </ul>
+    </li>
+</script>
+
+
+</body>
+</html>
