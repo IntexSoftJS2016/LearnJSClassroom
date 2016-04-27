@@ -14,7 +14,6 @@ function createDOM () {
   DOM.appendChild(firstItem);
 
   var randomNumber = createRandomNumber(2);
-  alert(randomNumber);
   for (var i = 0; i < randomNumber; i++) {
     var ul = document.createElement('ul');
     DOM.appendChild(ul);
