@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
     <title>Title</title>
-    <script src="script.js"></script>
+    <script src="angular.min.js"></script>
+    <script src="app.js"></script>
 </head>
-<body>
+<body ng-app="app">
     <div class="navbar">
         <p>Шапка сайта. Добро пожаловать на мой сайт</p>
     </div>
@@ -22,6 +23,31 @@
         <a href="">Ссылка 9<br></a>
     </div>
     <div class="content">
+        <div ng-controller="ContentController">
+            <h3>Angular:</h3>
+            <button ng-click="changeUsername('Сергей')">Сергей?</button>
+            <button ng-click="changeUsername('Владислав')">Владислав?</button>
+            <button ng-click="changeUsername('Афанасий')">Афанасий?</button>
+            <p>Привет, <em>{{ username }}</em>!</p>
+            <table>
+                <tr>
+                    <th>Буква</th>
+                    <th>Цифра</th>
+                </tr>
+                <tr ng-repeat="letter in lettersAndNumbers">
+                    <td>{{ letter.letter }}</td>
+                    <td>{{ letter.number }}</td>
+                </tr>
+            </table>
+            <br>
+            <input type="checkbox" id="box1" ng-model="checkboxModel.box1">
+            <label for="box1">Отображать блок 1</label>
+            <div class="c-component__box" ng-show="checkboxModel.box1">
+                <h3>Это блок 1</h3>
+            </div>
+
+        </div>
+        <br>
         <form class="form1">
             <h2>Добро пожаловать!</h2>
             <p>Контент. Здесь может быть абсолютно любая информация.</p>
@@ -40,6 +66,7 @@
             <button>Кнопка</button>
             <p><br></p>
         </form>
+
         <table class="table1">
             <tr>
                 <td>ячейка</td>
