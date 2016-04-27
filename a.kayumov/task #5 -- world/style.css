@@ -1,0 +1,14 @@
+table {
+    line-height: 70%;
+    font-family: monospace;
+    font-weight: bold;
+}
+
+.tableDiv {
+    float: left;
+}
+
+.legend {
+    float: left;
+    padding: 0 20px;
+}
