@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>World</title>
+    <link href="style.css" rel="stylesheet">
+
+    <script src="entity.js" defer></script>
+    <script src="logic.js" defer></script>
+    <script src="output.js" defer></script>
+    <script src="init.js" defer></script>
+</head>
+<body>
+    <div class = tableDiv>
+        <table id="table">
+        </table>
+    </div>
+
+    <div class="legend">
+        <p>Обновите страницу для генерации нового случайного мира с заданными
+            параметрами,<br>или нажмите "Start" для запуска текущего мира</p>
+        <button onclick="init()">Start</button>
+        <p>Легенда:</p>
+        <ul>
+            <li># — стена</li>
+            <li>* — растение</li>
+            <li>0 — травоядное</li>
+            <li>& — хищник</li>
+        </ul>
+        <hr>
+        <ul>
+            <li id="l1">Растений:</li>
+            <li id ="l2">Травоядных:</li>
+            <li id="l3">Хищников:</li>
+            <li id="l4">Цикл:</li>
+        </ul>
+    </div>
+</body>
+</html>
