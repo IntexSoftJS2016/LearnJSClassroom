@@ -8,14 +8,12 @@ function placeObjects(object, count) {
         if (world[randomField][randomColumn] == freePlace) {
             world[randomField][randomColumn] = object.design;
             /*если размещаемый объект - животное, то сохранить его координаты*/
-            if (object == Animal) {
-                if (count == 1) {
-                    object.positions[0][object.count] = randomField;
-                    object.positions[1][object.count] = randomColumn;
-                } else {
-                    object.positions[0][i] = randomField;
-                    object.positions[1][i] = randomColumn;
-                }
+            if (count == 1) {
+                object.positions[0][object.count] = randomField;
+                object.positions[1][object.count] = randomColumn;
+            } else {
+                object.positions[0][i] = randomField;
+                object.positions[1][i] = randomColumn;
             }
             i++;
         }

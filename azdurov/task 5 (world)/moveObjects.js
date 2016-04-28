@@ -4,7 +4,7 @@ function moveObjects(object) {
         var shiftX = 0, shiftY = 0;
         var x = object.positions[0][i];
         var y = object.positions[1][i];
-        var randomDirection = getRandom(1, 4);
+        var randomDirection = getRandom(1, 5);
         switch (randomDirection) {
             case 1:
                 shiftX = 1;
@@ -31,7 +31,7 @@ function moveObjects(object) {
         }
         /*если животное не хищник, перед которым не другой хищник и не растение*/
         else if (world[x + shiftX][y + shiftY] != hunter.design || (!object.aggressive &&
-            world[x + shiftX][y + shiftY] != plant.design)) {
+            world[x + shiftX][y + shiftY] != plant.design) && world[x + shiftX][y + shiftY] != wall) {
             /*то переместить объект*/
             object.positions[0][i] += shiftX;
             object.positions[1][i] += shiftY;
