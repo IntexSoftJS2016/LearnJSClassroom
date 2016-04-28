@@ -20,15 +20,23 @@ var wall = new Object();
 grass.view = '❀';
 wall.view = '▉';
 //predator.view =
-function PlantEater(grassCount, wallCount, plantEaterCount) {
-    this.grassCount = grassCount;
-    this.wallCount = wallCount;
-    this.plantEaterCount = plantEaterCount;
+var grassCount = prompt("травы : ",'');
+var wallCount = prompt("стен : ",'');
+var plantEaterCount = prompt("травоядных : ",'');
+var predatorCount = prompt("Хищников : ",'');
+function PlantEater() {
+  //  this.grassCount = grassCount;
+ //   this.wallCount = wallCount;
+  //  this.plantEaterCount = plantEaterCount;
+
     // this.position.x = xPos;
     //this.position.y = yPos;
     //this.view = "㋛";
-
-    this.view = '㋛';
+    if(grassCount>89)
+    {
+        alert("Много травы");
+    }
+        this.view = '㋛';
     /* get\set для счетчика травы*/
     this.setGrassCount = function (count) {
         if (count < 0) {
@@ -174,7 +182,7 @@ function PlantEater(grassCount, wallCount, plantEaterCount) {
         var emptyPosition = [];
 
         /* сверху */
-        if (valley[row][column - 1] == " "  || valley[row][column - 1] == plantEater.view) {
+        if (valley[row][column - 1] == " " || valley[row][column - 1] == plantEater.view) {
             /* Добавляем доступную ячейку в массив*/
             emptyPosition.push([row, column - 1])
         }
@@ -193,46 +201,53 @@ function PlantEater(grassCount, wallCount, plantEaterCount) {
             /* Добавляем доступную ячейку в массив*/
             emptyPosition.push([row - 1, column])
         }
+       /* if(emptyPosition.length ==0)
+        {
+            emptyPosition.push([row,column]);
+        }
+        */
+
         /* Выбираем из массива доступных ячеек рандомно любую и  перемещаем существо на нее*/
         rand = Math.floor(Math.random() * emptyPosition.length);
         /*  выбираем случайную доступную ячейку из массива  */
         return emptyPosition[rand];
     }
+
     function moveElement(element) {
         /* будет хранить текущую позицию сущности*/
         var pos;
         var emptyCell;
         /* массив для хранения координат нашего существа*/
         var position = getPosition(element);
+        var countp = 0;
         for (var count = 0; count < position.length; count++) {
             pos = position[count];
 
-            if(element.view == '♛')
-            {
+            if (element.view == '♛') {
                 emptyCell = checkPositionPredator(pos[0], pos[1]);
-                if(valley[emptyCell[0]][emptyCell[1]]==plantEater.view)
-                {
+                if (valley[emptyCell[0]][emptyCell[1]] == plantEater.view) {
                     plantEaterCount--;
                 }
             }
-            else
-            {
+            else {
                 emptyCell = checkPosition(pos[0], pos[1]);
             }
-            if(valley[emptyCell[0]][emptyCell[1]]==grass.view)
-            {
-                grassCount --;
+            if (valley[emptyCell[0]][emptyCell[1]] == grass.view) {
+                grassCount--;
             }
-
-            valley[emptyCell[0]][emptyCell[1]] = element.view;
-            valley[pos[0]][pos[1]] = " ";
+                valley[emptyCell[0]][emptyCell[1]] = element.view;
+                valley[pos[0]][pos[1]] = " ";
         }
+        countp++;
         plantEater.showValley();
+
     }
+
     /* Устанавливаем интервал через который двигаем элементы */
     this.set = function () {
         setInterval(function () {
-            moveElement(plantEater);moveElement(predator)
+            moveElement(plantEater);
+            moveElement(predator)
         }, 500);
     }
     /**
@@ -262,9 +277,9 @@ function PlantEater(grassCount, wallCount, plantEaterCount) {
                 var column = document.createElement("td");
                 column.textContent = valley[rowCol][colCol];
                 row.appendChild(column);
-                div.innerHTML = "Осталось травы : "+ (grassCount)+ "\n\n";
+                div.innerHTML = "Осталось травы : " + (grassCount) + "\n\n";
 
-                div.innerHTML +="Осталось Травоядных : " + plantEaterCount;
+                div.innerHTML += "Осталось Травоядных : " + plantEaterCount;
                 // document.write("<td style='font-size: 22px; border: 1px solid black ;width:30px;height: 30px;'>" + valley[rowCol][colCol] + "</td>")
             }
             //  document.write("</tr>");
@@ -278,16 +293,16 @@ function PlantEater(grassCount, wallCount, plantEaterCount) {
 
     }
 }
-function Predator(){
+function Predator() {
     this.view = '♛';
 }
-var plantEater = new PlantEater(10, 5, 10);
+var plantEater = new PlantEater();
 var predator = new Predator();
-plantEater.setElement(10, grass);
-plantEater.setElement(5, wall);
-plantEater.setElement(10, plantEater);
+plantEater.setElement(grassCount, grass);
+plantEater.setElement(wallCount, wall);
+plantEater.setElement(plantEaterCount, plantEater);
 //plantEater.setElement(3, predator);
-plantEater.setElement(6,predator);
+plantEater.setElement(predatorCount, predator);
 //setInterval(moveElement(plantEater),200);
 plantEater.set();
 
