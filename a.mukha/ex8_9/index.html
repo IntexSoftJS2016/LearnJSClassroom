@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="app">
 <head>
 	<meta charset="UTF-8">
 	<title>Responsive Template</title>
@@ -7,23 +7,27 @@
 </head>
 <body>
 	<div class="wrapper">
-		<header>
-			<h2>Header</h2>
+		<header ng-controller="HeadCtrl as head">
+			<h2 >{{ head.name }}</h2>
 		</header>
 
-		<nav>
+		<nav ng-controller="MenuCtrl as menu">
 			<h2>Menu</h2>
 			<ul>
-				<li><a href="#">Home</a></li>
-				<li><a href="#">News</a></li>
-				<li><a href="#">Blog</a></li>
-				<li><a href="#">Contacts</a></li>
-				<li><a href="#">About Us</a></li>
+				<li ng-repeat="item in menu.items">
+					<a href="#"> {{ item }} </a>
+				</li>				
 			</ul>
 		</nav>
 		
-		<main>
-			<h2>Content</h2>
+		<main ng-controller="ContentCtrl as content">
+			<h2>Our Apps!</h2>
+
+			<div class="appCard" ng-repeat="app in content.apps">
+				<h4>{{ app.name }}</h4>
+				<p>{{ app.description }}</p>
+				<button ng-show="{{ app.available }}">Buy!  <em>{{ app.price | currency}}</em></button>
+			</div>
 
 			<section class="subscribe">
 				<input type="email" placeholder="Please enter your email" name="email" required>
@@ -65,8 +69,10 @@
 		</main>
 
 		<footer>
-			<p>Created by AndersFly. All rights reserved &copy; 2016.</p>
+			<p>Created by FlyDevStudio. All rights reserved &copy; 2016.</p>
 		</footer>
 	</div>
+	<script type="text/javascript" src="angular.min.js"></script>
+	<script type="text/javascript" src="app.js"></script>
 </body>
 </html>
