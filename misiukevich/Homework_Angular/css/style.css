@@ -1,0 +1,148 @@
+body {
+    background-color: #e1e8f0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    flex: auto;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #6ed3cf;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.mid {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+}
+
+nav {
+    background-color: #e62739;
+    min-width: 150px;
+}
+
+nav ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+nav ul li {
+    flex-grow: 1;
+    list-style-type: none;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1;
+    margin: auto;
+}
+
+h2 {
+    align-self: center;
+}
+
+.input-line {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.input-line input {
+    width: 200px;
+}
+
+.input-left {
+    margin-right: 2px;
+}
+
+.input-right {
+    align-self: flex-end;
+}
+
+table {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    margin: 10px;
+    justify-content: center;
+}
+
+tr {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+th, td {
+    text-align: center;
+    max-width: 100px;
+    min-width: 25px;
+    flex-grow: 1;
+    border: 1px solid black;
+    margin: 2px;
+}
+
+footer {
+    background-color: #9068be;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+@media screen and (max-width: 635px) {
+    .mid {
+        display: flex;
+        flex-direction: column;
+    }
+
+    nav ul {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .input-line {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-grow: 1;
+        margin: auto;
+        padding: 0;
+    }
+
+    .input-left {
+        margin-bottom: 2px;
+    }
+
+    .input-right {
+        margin: 30px;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    body {
+        width: 900px;
+        margin: auto;
+    }
+}
