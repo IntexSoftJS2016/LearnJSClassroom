@@ -1,0 +1,64 @@
+.container {
+    padding: 0;
+    margin: 0;
+}
+
+.container li {
+    list-style-type: none;
+}
+
+.node {
+    margin-left: 18px;
+    background-image:  url('../img/line.gif');
+    background-position: top left;
+    background-repeat: repeat-y;
+}
+
+.isRoot {
+    margin-left: 0;
+}
+
+.isLast {
+    background-image: url('../img/line-half.gif');
+    background-repeat: no-repeat;
+}
+
+.expand {
+    width: 18px;
+    height: 18px;
+    float: left;
+}
+
+.content {
+    margin-left: 18px;
+    min-height: 18px;
+}
+
+.expandClosed>.expand {
+    background-image: url('../img/plus.gif');
+}
+
+.expandOpen>.expand {
+    background-image: url('../img/minus.gif');
+}
+
+.expandLeaf .expand {
+    background-image: url('../img/leaf.gif');
+}
+
+.expandOpen .container {
+    display: block;
+}
+
+.expandClosed .container {
+    display: none;
+}
+
+.expandOpen .expand,
+.expandClosed .expand {
+    cursor: pointer;
+}
+
+.expandLeaf .expand {
+    cursor: auto;
+}
