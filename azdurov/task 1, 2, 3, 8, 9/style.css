@@ -46,3 +46,10 @@ td {
     text-align: center;
     font-size: small;
 }
+
+.even{
+    background-color: #f0c;
+}
+.odd{
+    background-color: #0f3;
+}

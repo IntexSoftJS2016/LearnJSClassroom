@@ -1,6 +1,3 @@
-/**
- * Created by Андрей on 027 27.04.16.
- */
 (function() {
     'use strict';
     angular
@@ -10,7 +7,10 @@
             $scope.changeUsername = function(username) {
                 $scope.username = username;
             };
-            $scope.lettersAndNumbers = [
+            $scope.colorList = {
+                style: null,
+            };
+            $scope.itemsAndNumbers = [
                 {
                     letter: 'А',
                     number: '1'
@@ -22,8 +22,15 @@
                 {
                     letter: 'В',
                     number: '3'
+                },
+                {
+                    letter: 'Г',
+                    number: '4'
+                },
+                {
+                    letter: 'Д',
+                    number: '5'
                 }
             ];
-            
         }]);
 })();
