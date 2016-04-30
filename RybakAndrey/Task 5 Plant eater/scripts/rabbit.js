@@ -1,11 +1,11 @@
-var Rabbit = function (positionX, positionY) {
+var Rabbit = function (map, positionX, positionY) {
     Animal.apply(this,arguments)
     this.icon = "🐰";
 };
 
 Rabbit.prototype = Object.create(Animal.prototype);
 
-Rabbit.prototype.createObjects = new function () {
+Rabbit.prototype.createObjects = function () {
     var rabbits = [];
     for(var i = 0; i < 20; i++){
         rabbits.push(new Rabbit());
@@ -14,14 +14,15 @@ Rabbit.prototype.createObjects = new function () {
 };
 
 function setPosition (rabbits) {
-    var position = generateRandomPosition();
     for(var i=0; i<rabbits.length; i++){
-        if(checkPosition(position.randomPositionRow,position.randomPositionColumn)){
-            rabbits[i].positionRow = position.randomPositionRow;
-            rabbits[i].positionColumn = position.randomPositionColumn;
-        }else{
+        var position;
+        do{
             position = generateRandomPosition();
         }
+        while(!checkPosition(position.randomPositionRow,position.randomPositionColumn));
+
+        rabbits[i].positionRow = position.randomPositionRow;
+        rabbits[i].positionColumn = position.randomPositionColumn;
     }
     return rabbits;
 }

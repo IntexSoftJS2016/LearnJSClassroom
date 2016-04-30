@@ -1,5 +1,6 @@
-var Animal = function (positionRow, positionColumn) {
+var Animal = function (map,positionRow, positionColumn) {
     var self = this;
+    self.map = map;
     self.positionRow = positionRow;
     self.positionColumn = positionColumn;
     self.health = 15;
