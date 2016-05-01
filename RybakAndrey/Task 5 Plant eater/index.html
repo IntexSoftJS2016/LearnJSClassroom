@@ -4,16 +4,35 @@
     <meta charset="UTF-8">
     <link href="style.css" type="text/css" rel="stylesheet">
     <title>PlanetEater</title>
-    <script src="scripts/animal.js"></script>
-    <script src="scripts/rabbit.js"></script>
-    <script src="scripts/wolf.js"></script>
-    <script src="scripts/map.js"></script>
-    <script src="index.js"></script>
+    <script src="scripts/models/animal/animal.js"></script>
+    <script src="scripts/models/animal/rabbit.js"></script>
+    <script src="scripts/models/animal/wolf.js"></script>
+    <script src="scripts/game.js"></script>
+    <script src="scripts/constants.js"></script>
+    <script src="scripts/itemFactory.js"></script>
+    <script src="scripts/models/empty.js"></script>
+    <script src="scripts/models/flower.js"></script>
+    <script src="scripts/models/wall.js"></script>
+    <script src="scripts/utils.js"></script>
+
 </head>
 <body>
-<input type="button" value="Start" onclick="startPlantEater()">
+
+<input type="button" value="Start" onclick="start()">
+<input type="text" value="Rabbits: " id="rabbits">
+<input type="text" value="Wolves: " id="wolves">
+<input type="text" value="Flowers: " id="flowers">
+
 <div class="map">
 
 </div>
+
+
+<script>
+    function start() {
+        var game = new Game({width: 40, height: 20});
+        game.start();
+    }
+</script>
 </body>
 </html>
