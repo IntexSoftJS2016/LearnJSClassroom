@@ -1,9 +1,29 @@
+try {
+    function runTheLifeOfTheWorld() {
+        moveObjects(hunter);
+        moveObjects(plantEater);
+        if (Math.random() > 0.8) {
+            placeObjects(plant, 1);
+            plant.count++;
+        }
+        document.body.innerHTML = "";
+        showWorld();
+        if (plantEater.count == 0) {
+            throw "Игра закончилась. Всех съели :-(";
+        }
+    }
+} catch (e) {
+    alert(e);
+    window.stop();
+    throw "stop";
+}
+
 function moveObjects(object) {
-    for (var i = 0; i < object.count; i++) {
+    for (var objIndex = 0; objIndex < object.count; objIndex++) {
         /*случайное направление движения*/
         var shiftX = 0, shiftY = 0;
-        var x = object.positions[0][i];
-        var y = object.positions[1][i];
+        var x = object.positions[0][objIndex];
+        var y = object.positions[1][objIndex];
         var randomDirection = getRandom(1, 5);
         switch (randomDirection) {
             case 1:
@@ -30,11 +50,11 @@ function moveObjects(object) {
             object.count++;
         }
         /*если животное не хищник, перед которым не другой хищник и не растение*/
-        else if (world[x + shiftX][y + shiftY] != hunter.design || (!object.aggressive &&
-            world[x + shiftX][y + shiftY] != plant.design) && world[x + shiftX][y + shiftY] != wall) {
+        else if ((world[x + shiftX][y + shiftY] != hunter.design || (!object.aggressive &&
+            world[x + shiftX][y + shiftY] != plant.design)) && world[x + shiftX][y + shiftY] != wall) {
             /*то переместить объект*/
-            object.positions[0][i] += shiftX;
-            object.positions[1][i] += shiftY;
+            object.positions[0][objIndex] += shiftX;
+            object.positions[1][objIndex] += shiftY;
             world[x][y] = freePlace;
             /*если впереди было растение*/
             if (world[x + shiftX][y + shiftY] == plant.design) {
@@ -45,8 +65,8 @@ function moveObjects(object) {
             else if (world[x + shiftX][y + shiftY] == plantEater.design) {
                 /*удалить координаты съеденого*/
                 for (var j = 0; j < plantEater.count; j++) {
-                    if (object.positions[0][i] == plantEater.positions[0][j] &&
-                        object.positions[1][i] == plantEater.positions[1][j]) {
+                    if (object.positions[0][objIndex] == plantEater.positions[0][j] &&
+                        object.positions[1][objIndex] == plantEater.positions[1][j]) {
                         plantEater.positions[0][j] = plantEater.positions[0][plantEater.count - 1];
                         plantEater.positions[1][j] = plantEater.positions[1][plantEater.count - 1];
                         break;
@@ -57,4 +77,19 @@ function moveObjects(object) {
             world[x + shiftX][y + shiftY] = object.design;
         }
     }
+}
+
+/*
+* вывод "мира" на экран
+* */
+function showWorld() {
+    document.write("Травоядных: " + plantEater.count + ", Хищников: " + hunter.count + ", Растений: " + plant.count);
+    document.write("<table>");
+    for (var rowIndex = 0; rowIndex < worldSize; rowIndex++) {
+        document.write("<tr>");
+        for (var colIndex = 0; colIndex < worldSize; colIndex++) {
+            document.write("<td>" + world[rowIndex][colIndex] + "</td>");
+        }
+    }
+    document.write("</table>");
 }

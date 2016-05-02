@@ -1,0 +1,35 @@
+<div>
+    <div ng-controller="ContentController">
+        <h3>Angular:</h3>
+        <span ng-style="styleUsername">Привет, <em>{{ username }}</em>!</span>
+        <br>
+        <button ng-click="changeUsername('Сергей')">Сергей?</button>
+        <button ng-click="changeUsername('Владислав')">Владислав?</button>
+        <button ng-click="changeUsername('Афанасий')">Афанасий?</button>
+        <br>
+        <button ng-click="styleUsername={'background-color':'green'}">Сделать Зелёным</button>
+        <button ng-click="styleUsername={'background-color':'red'}">Сделать Красным</button>
+        <button ng-click="styleUsername={}">Оригинал</button>
+        <br> <br>
+        <!--<select>
+            <option ng-model="colorList.style('simple')">Полностью</option>
+            <option ng-model="colorList.style('oddOven')">Чересстрочно</option>
+        </select> <br> <br>-->
+        <table>
+            <tr>
+                <th>Буква</th>
+                <th>Цифра</th>
+            </tr>
+            <tr ng-repeat="item in itemsAndNumbers" ng-class="{even: $even, odd: $odd}">
+                <td>{{ item.letter }}</td>
+                <td>{{ item.number }}</td>
+            </tr>
+        </table>
+        <br>
+        <input type="checkbox" id="box1" ng-model="checkboxModel.box1">
+        <label for="box1">Отображать блок 1</label>
+        <div class="c-component__box" ng-show="checkboxModel.box1">
+            <h3>Это блок 1</h3>
+        </div>
+    </div>
+</div>

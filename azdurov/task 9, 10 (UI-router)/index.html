@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Title</title>
+    <script src="http://code.angularjs.org/1.2.13/angular.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
+    <script src="app.js"></script>
+</head>
+<body ng-app="routerCtrl">
+    <div class="navbar">
+        <p>Шапка сайта. Добро пожаловать на мой сайт</p>
+    </div>
+    <div class="sidebar">
+        <a ui-sref="home">Главная страница<br></a>
+        <a ui-sref="taskAngular1">taskAngular1<br></a>
+        <a href="">Ссылка 3<br></a>
+        <a href="">Ссылка 4<br></a>
+        <a href="">Ссылка 5<br></a>
+        <a href="">Ссылка 6<br></a>
+        <a href="">Ссылка 7<br></a>
+        <a href="">Ссылка 8<br></a>
+        <a href="">Ссылка 9<br></a>
+    </div>
+    <div class="content" ui-view>
+
+    </div>
+    <div class="footer">
+        Футер. Подвал. Нижняя часть сайта
+    </div>
+</body>
+</html>
