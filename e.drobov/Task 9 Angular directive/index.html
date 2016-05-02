@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html >
+
+<header ng-controller="HeaderController as headerController" >
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="styles.css" type="text/css " media="screen"/>
+    <script src="angular.min.js"></script>
+    <script src="app.js"></script>
+
+    <h1>{{headerController.hello}}</h1>
+    <title>Сайт со статическим меню</title>
+</header>
+
+<body ng-app="app">
+<nav ng-controller="MenuController as menuController">
+    <ul id="menu"  >
+        <a  ng-repeat="item in menuController.items " colorized="dir" color='{{item.name}}' href = "www.mail.ru">{{item.name}}</br>
+        </a>
+
+    <list  items="item in menuController.items" type="{{item.type}}">{{item.name}}</list>
+    </ul>
+</nav>
+
+
+<main>
+    <div id="content">
+        <form id="myform" action="">
+
+            <input id="textField" type="text" name="firstname" placeholder="Ваше имя">
+
+            <input id="passwField" type="password" name="password" placeholder="Пароль"><br><br>
+            <select>
+                <optgroup>
+                    <option>Выбор 1</option>
+                    <option>Выбор 2</option>
+                    <option>Выбор 3</option>
+                </optgroup>
+            </select>
+            <input id="button" type="submit" name="Submit"/>
+        </form>
+
+        <table ng-controller="ContentController as tableController">
+            <tr ng-repeat="value in tableController.table">
+                <td>{{value.column1}}</td>
+                <td>{{value.column2}}</td>
+                <td>{{value.column3}}</td>
+            </tr>
+
+        </table>
+    </div>
+</main>
+</body>
+<footer>&copy Дробов Евгений</footer>
+
+</html>
