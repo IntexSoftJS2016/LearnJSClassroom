@@ -1,0 +1,196 @@
+/*Overal Styles*/
+
+html, body {
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+}
+
+body {
+	background-color: #fff;
+	color: #34495e;
+}
+
+.wrapper {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.wrapper > header, nav, main, footer {
+	font-size: 20px;
+	text-align: center;
+	padding: 10px;
+}
+
+h2 {
+	text-transform: uppercase;
+}
+
+/*Header Styles*/
+
+header {
+	order: 1;
+	min-height: 70px;	
+	flex: 0 1 100%;
+	background-color: #3498db;
+	margin: 5px 5px 10px 5px;
+}
+
+header > h2 {
+	margin-top: 10px;
+}
+
+/*Navigation Styles*/
+
+nav {
+	order: 2;
+	flex: 1 1 100px;
+	margin: 10px 5px auto 5px;
+	text-transform: uppercase;
+	background-color: #3498db;
+}
+
+nav ul {
+	padding: 0;
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+}
+
+nav li {
+	padding: 15px 10px;	
+	cursor: pointer;
+}
+
+nav li:hover {
+	background-color: #2980b9;
+}
+
+nav a {
+	text-decoration: none;
+	color: inherit;
+}
+
+/*Main content Styles*/
+
+main {
+	order: 3;
+	min-height: 600px;
+	margin: 10px 5px 5px 5px;
+	flex: 3 1 535px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	background-color: #fff;
+	color: black;
+}
+
+.appCard {
+	padding: 20px;
+	max-width: 600px;
+	margin: 0 auto 20px auto;
+	box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.5);
+}
+
+.appCard button {
+	height: 40px;
+	background-color: #fff;
+	border: 2px solid black;
+	cursor: pointer;
+	flex: 0 1 55%;
+	margin: 10px auto;
+	font-size: 18px;
+	text-transform: uppercase;
+}
+
+.appCard button:hover {
+	background-color: #000;
+	color: #fff;
+}
+
+.subscribe {
+	width: 75%;
+	order: 1;
+	min-height: 200px;
+	margin-left: auto;
+	margin-right: auto;
+	flex: 1;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+}
+
+.subscribe > input {
+	height: 40px;
+	margin: 10px;
+	flex: 1 1 100px;
+}
+
+.subscribe > select {
+	height: 46px;
+	margin: 10px;
+	flex: 1 1 100px;
+	background-color: #fff;
+}
+
+.subscribe > button {
+	height: 40px;
+	background-color: #fff;
+	border: 2px solid black;
+	cursor: pointer;
+	flex: 0 1 55%;
+	margin: 10px auto;
+	font-size: 18px;
+	text-transform: uppercase;
+}
+
+.subscribe > button:hover {
+	background-color: #000;
+	color: #fff;
+}
+
+table {
+	order: 2;
+	flex-basis: 535px;
+	border: 2px solid black;
+	border-collapse: collapse;
+	margin: 10px auto 20px auto;
+}
+
+th, td {
+	border: 1px solid grey;
+	padding: 5px;
+}
+
+tr:nth-child(odd) {
+	background-color: #eee;
+}
+
+tr > th:first-child, td:first-child {
+	text-align: left;
+} 
+
+tr > th:last-child, td:last-child {
+	text-align: right;
+} 
+
+/*Footer Styles*/
+
+footer {
+	order: 4;
+	height: 50px;
+	flex: 0 1 100%;
+	margin: 10px 5px 5px 5px;
+	background-color:  #7f8c8d;
+}
+
+footer > p {
+	margin-top: 15px;
+}
+
+/*Additional styles*/
+
+.fish {
+	margin: 10px auto;
+	width: 75%;
+}

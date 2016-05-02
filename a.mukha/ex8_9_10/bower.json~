@@ -1,0 +1,17 @@
+{
+  "name": "ex8_9_10",
+  "homepage": "https://github.com/AndersFly666/LearnJSClassroom",
+  "authors": [
+    "AndersFly <andrewfly666@outlook.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
