@@ -1,0 +1,13 @@
+body {
+  display: flex;
+  flex-direction: row;
+}
+
+#tree {
+  flex-grow: 1;
+}
+
+#buttons {
+  flex-grow: 1;
+  padding: 100px 0 0 100px;
+}
