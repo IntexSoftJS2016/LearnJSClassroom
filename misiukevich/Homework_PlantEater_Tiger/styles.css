@@ -1,0 +1,29 @@
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+    line-height: 1.7em;
+    font-size: 13px;
+}
+
+.is-center {
+    text-align: center;
+}
+
+.content-wrapper {
+    position: absolute;
+    top: 27%;
+    width: 100%;
+    min-height: 12%;
+    z-index: 2;
+    background: white;
+
+}
+
+textarea {
+    font-size: 20px;
+    border: none;
+}
