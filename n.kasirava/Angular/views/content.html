@@ -1,0 +1,52 @@
+<div id='main-content'>
+    <p>Интеграл от функции, обращающейся в бесконечность в изолированной точке выведен. Геодезическая линия специфицирует Наибольший Общий Делитель (НОД). Натуральный логарифм, как следует из вышесказанного, позитивно синхронизирует неопровержимый многочлен. Легко проверить, что первообразная функция стремится к нулю. Наибольшее и наименьшее значения функции не критично. Математическое моделирование однозначно показывает, что интеграл Дирихле обоснован необходимостью.</p>
+    <form id='form'>
+        <h4>Директива List</h4>
+        <div ng-controller="listController as listCtrl">
+            <select id="select" ng-model="listCtrl.selectedType" ng-options="type.id as type.name for type in listCtrl.types">
+            </select>
+            <ul id="list-directive">
+                <list ng-repeat="item in listCtrl.listItems" items="{{item.name}}" type="{{listCtrl.selectedType}}"></list>
+            </ul>
+        </div>
+        <input type="text" id='text-input'>
+        <div id='radio-form'>
+            <input type="radio" id='radio1' name='radio-buttons' checked class='radio-buttons'>
+            <label for='radio1'>Кнопка 1</label>
+            <input type="radio" id='radio2' name='radio-buttons' class='radio-buttons'>
+            <label for='radio2'>Кнопка 2</label>
+            <input type="radio" id='radio3' name='radio-buttons' class='radio-buttons'>
+            <label for='radio3'>Кнопка 3</label>
+            <input type="submit" id='submit-button' value='Кнопка'>
+        </div>
+    </form>
+    <table id='table'>
+        <caption><h4>Почему дешево месторождение каменного угля?</h4></caption>
+        <tbody>
+        <tr id='table-labels'>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+        </tr>
+        <tr ng-controller="contentController as content">
+            <td data-label='1'>{{content.cell1}}</td>
+            <td data-label='2'>{{content.cell2}}</td>
+            <td data-label='3'>{{content.cell3}}</td>
+            <td data-label='4'>{{content.cell4}}</td>
+        </tr>
+        <tr>
+            <td data-label='1'>Море превышает Карибский бассейн.</td>
+            <td data-label='2'>Полынно-кустарниковая растительность вразнобой иллюстрирует уличный ледостав.</td>
+            <td data-label='3'>Выщелачивание, по данным почвенной съемки, снижает вязкий грунт.</td>
+            <td data-label='4'>Прибор Качинского продуцирует электрод.</td>
+        </tr>
+        <tr>
+            <td data-label='1'>Уровень грунтовых вод горизонтально усиливает почвообразующий псевдомицелий.</td>
+            <td data-label='2'>Водоупор восстанавливает карбонат кальция как при нагреве, так и при охлаждении.</td>
+            <td data-label='3'>Натяжение концентрирует лёсс.</td>
+            <td data-label='4'>Структура почв отражает краснозём. </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

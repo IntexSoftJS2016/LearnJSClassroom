@@ -1,0 +1,9 @@
+<header>
+<nav id='menu'>
+    <div id='logo' ng-controller="headerController as header">{{header.logo}}</div>
+    <a class="main-item" tabindex="1" > + </a>
+    <ul id='list' ng-controller="menuController">
+        <li ng-repeat="item in items"><a href="#">{{item.name}}</a></li>
+    </ul>
+</nav>
+</header>
