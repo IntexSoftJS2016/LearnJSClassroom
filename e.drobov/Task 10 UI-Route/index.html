@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<header>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="styles.css" type="text/css			" media="screen" />
+    <script src="http://code.angularjs.org/1.2.13/angular.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <!--[if lt IE 9]>
+    <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+    <![endif]-->
+
+    <h1>Добро пожаловать!</h1>
+    <title>UI-route</title>
+</header>
+
+<body ng-app="routerApp">
+<nav>
+    <ul id="">
+        <li><a ui-sref="home">home</a></li>
+        <li><a ui-sref="list">list</a></li>
+        <li><a href="#section-3">Секция 3</a></li>
+        <li><a href="#section-4">Секция 4</a></li>
+        <li><a href="#section-5">Секция 5</a></li>
+        <li><a href="#section-6">Секция 6</a></li>
+        <li><a href="#section-7">Секция 7</a></li>
+        <li><a href="#section-8">Секция 8</a></li>
+        <li><a href="#section-9">Секция 9</a></li>
+        <li><a href="#section-10">Секция 10</a></li>
+    </ul>
+</nav>
+
+
+<main>
+    <div  id="content" ui-view> </div>
+
+</main>
+</body>
+<footer>&copy Дробов Евгений</footer>
+
+</html>
