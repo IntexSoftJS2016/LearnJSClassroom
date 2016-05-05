@@ -8,41 +8,23 @@
 	<script src="scripts/script.js"></script>
 </head>
 <body>	
-	<ul class="container">
-	    <li class="node isRoot isLast expandOpen">
-	        <div class="expand"></div>
-	        <div class="content">Root</div>
-	        <ul class="container">
-	            <li class="node expandLeaf">
-	                <div class="expand"></div>
-	                <div class="content">Item 1</div>
-	            </li>
-	            <li class="node expandOpen isLast">
-	                <div class="expand"></div>
-	                <div class="content">Item 2</div>
-	                <ul class="container">
-	                    <li class="node expandLeaf">
-	                        <div class="expand"></div>
-	                        <div class="content">Item 3</div>
-	                    </li>
-	                    <li class="node expandOpen isLast">
-	                        <div class="expand"></div>
-	                        <div class="content">Item 4</div>
-	                        <ul class="container">
-	                            <li class="node expandLeaf">
-	                                <div class="expand"></div>
-	                                <div class="content">Item 5</div>
-	                            </li>
-	                            <li class="node expandLeaf isLast">
-	                                <div class="expand"></div>
-	                                <div class="content">Item 6</div>
-	                            </li>
-	                        </ul>
-	                    </li>
-	                </ul>
-	            </li>
-	        </ul>
-	    </li>
-	</ul>
+	<div class="wrapper">
+		<div id="tree"></div>
+		<div id="btnBlock">
+		<ul>
+			<li>
+			<button id="parent">parent</button>
+			<ul>
+				<li><button id="prevSibling">prevSibling</button></li>
+				<li><ul>
+					<li><button id="firstChild">firstChild</button></li>
+					<li><button id="lastChild">lastChild</button></li>
+				</ul></li>
+				<li><button id="nextSibling">nextSibling</button></li>
+			</ul>
+			</li>
+		</ul>    
+		</div>
+	</div>
 </body>
 </html>
