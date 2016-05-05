@@ -1,64 +1,54 @@
+.wrapper {
+  width: 500px;
+  margin: 0 auto;
+}
+#tree {
+  float: left;
+}
+#btnBlock {
+ width: 200px;
+ float: right;
+ margin-right: 20px;
+}
+button {
+  background-color: #fff;
+  color: #000;
+  border: 2px solid black;
+  margin: 2px;
+  cursor: pointer;
+}
+button[disabled] {
+  color: #ccc;
+  border-color: #ddd;
+  cursor: auto;
+}
+button:not([disabled]):hover {
+  background-color: #000;
+  color: #fff;
+}
 .container {
-    padding: 0;
-    margin: 0;
+  width: 100px;
+  list-style: none;
+  color: #fff;
 }
-
-.container li {
-    list-style-type: none;
-}
-
 .node {
-    margin-left: 18px;
-    background-image:  url('../img/line.gif');
-    background-position: top left;
-    background-repeat: repeat-y;
+  background-color: #19b98c;
+  border: 1px solid grey;
+}
+.nested {
+  background-color: #21c54d;
+  border: 1px dashed white;
+}
+.nested, .node {
+  cursor: pointer;
 }
 
-.isRoot {
-    margin-left: 0;
+.active {
+   border: 2px solid red;
+   background-color: yellow;
+   color: black;
 }
 
-.isLast {
-    background-image: url('../img/line-half.gif');
-    background-repeat: no-repeat;
-}
-
-.expand {
-    width: 18px;
-    height: 18px;
-    float: left;
-}
-
-.content {
-    margin-left: 18px;
-    min-height: 18px;
-}
-
-.expandClosed>.expand {
-    background-image: url('../img/plus.gif');
-}
-
-.expandOpen>.expand {
-    background-image: url('../img/minus.gif');
-}
-
-.expandLeaf .expand {
-    background-image: url('../img/leaf.gif');
-}
-
-.expandOpen .container {
-    display: block;
-}
-
-.expandClosed .container {
-    display: none;
-}
-
-.expandOpen .expand,
-.expandClosed .expand {
-    cursor: pointer;
-}
-
-.expandLeaf .expand {
-    cursor: auto;
+.parent {
+  border: 5px dashed orange;
 }
