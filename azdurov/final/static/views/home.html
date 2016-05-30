@@ -1,0 +1,447 @@
+﻿<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="single-page-nav sticky-wrapper" id="tmNavbar">
+            <ul class="nav navbar-nav">
+                <li><a href="#section1">Проекты</a></li>
+                <li><a href="#section2">Задачи</a></li>
+                <li ng-show="vm.isAdmin"><a href="#section3">Пользователи</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<!--Список проектов-->
+
+<div id="section1" class="projects-section">
+    <div class="container">
+        <div class="col-lg-offset-8 col-lg-4 text-right">
+            <h4 class="username">Здравствуйте, {{vm.user.username}}. Вы "{{vm.user.role}}"</h4>
+            <div>
+                <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modifyUser">
+                    Редактировать профиль
+                </button>
+                <a href="#/login" class="btn btn-danger btn-sm">Выйти</a>
+            </div>
+        </div>
+
+        <div class="col-lg-12">
+            <div class="nameSection">
+                <h1>Проекты:</h1>
+                <input class="filter" type="text" placeholder="Фильтр" ng-model="projectFilter">
+            </div>
+            <div class="table-responsive">
+                <table class="table table-condensed table-hover">
+                    <thead>
+                    <tr>
+                        <th width="20%">Название</th>
+                        <th width="20%">Описание</th>
+                        <th width="15%">Менеджер проекта</th>
+                        <th width="15%">Разработчики</th>
+                        <th width="30%">Задачи</th>
+                    </tr>
+                    </thead>
+                    <tbody id="tableProjects">
+                    <tr ng-repeat="project in vm.allProjects | filter: projectFilter" data-toggle="modal"
+                        data-target=".viewProject" ng-click="vm.viewProject(project)">
+                        <!--ng-hide="vm.user.role === 'Developer' && project.developers != vm.user.lastName">-->
+                        <td>{{project.projectname}}</td>
+                        <td>{{project.description}}</td>
+                        <td>{{project.manager}}</td>
+                        <td>{{project.developers}}</td>
+                        <td>{{project.tasks}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <button ng-hide="vm.user.role === 'Developer'" class="btn btn-success" data-toggle="modal"
+                    data-target="#createProject">Создать новый проект
+            </button>
+            <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }"
+                 ng-show="flash" ng-bind="flash.message"></div>
+        </div>
+    </div>
+</div>
+
+
+<!--Список задач-->
+
+<div id="section2" class="tasks-section">
+    <div class="container">
+        <div class="col-lg-12">
+            <div class="nameSection">
+                <h1>Задачи:</h1>
+                <input class="filter" type="text" placeholder="Фильтр" ng-model="taskFilter">
+            </div>
+            <div class="table-responsive">
+                <table class="table table-condensed table-hover">
+                    <thead>
+                    <tr>
+                        <th width="15%">Название</th>
+                        <th width="18%">Описание</th>
+                        <th width="15%">Проект</th>
+                        <th width="15%">Разработчики</th>
+                        <th width="10%">Статус</th>
+                        <th width="15%">Время выполнения</th>
+                        <th width="12%">Дата создания</th>
+                    </tr>
+                    </thead>
+                    <tbody id="tableTasks">
+                    <tr ng-repeat="task in vm.allTasks | filter: taskFilter" data-toggle="modal" data-target=".viewTask"
+                        ng-click="vm.viewTask(task)">
+                        <!--ng-hide="vm.user.role === 'Developer' && task.developers != vm.user.lastName">-->
+                        <td>{{task.taskname}}</td>
+                        <td>{{task.description}}</td>
+                        <td>{{task.project}}</td>
+                        <td>{{task.developers}}</td>
+                        <td>{{task.status}}</td>
+                        <td>{{task.time}}</td>
+                        <td>{{task.startTime}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <button class="btn btn-success" data-toggle="modal" data-target="#createTask">Создать новую задачу
+            </button>
+            <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }"
+                 ng-show="flash" ng-bind="flash.message"></div>
+        </div>
+    </div>
+</div>
+
+
+<!--Список пользователей-->
+
+<div id="section3" class="users-section" ng-show="vm.isAdmin">
+    <div class="container">
+        <div class="col-lg-12">
+            <div class="nameSection">
+                <h1>Список пользователей:</h1>
+                <input class="filter" type="text" placeholder="Фильтр" ng-model="userFilter">
+            </div>
+            <div class="table-responsive">
+                <table class="table table-condensed table-hover">
+                    <thead>
+                    <tr>
+                        <th width="15%">Фамилия</th>
+                        <th width="14%">Имя</th>
+                        <th width="14%">Отчество</th>
+                        <th width="10%">Логин</th>
+                        <th width="7%">Роль</th>
+                        <th width="22%">Контактная информация</th>
+                        <th width="18%"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="user in vm.allUsers | filter: userFilter">
+                        <td>{{user.lastName}}</td>
+                        <td>{{user.firstName}}</td>
+                        <td>{{user.middleName}}</td>
+                        <td>{{user.username}}</td>
+                        <td>{{user.role}}</td>
+                        <td>{{user.contact}}</td>
+                        <td>
+                            <button class="btn btn-primary btn-sm" ng-click="vm.modifyRoleUser(user.id)">Сменить
+                                права
+                            </button>
+                            <button class="btn btn-primary btn-sm" ng-click="vm.deleteUser(user.id)">Удалить
+                            </button>
+                        </td>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+<!--Редактирование профиля-->
+
+<div id="modifyUser" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal">×</button>
+                <h4 class="modal-title">Редактирование профиля</h4>
+            </div>
+            <div class="modal-body">
+                <form name="formModifyUser" ng-submit="vm.modifyUser()" role="form">
+                    <div class="form-group">
+                        <label>Фамилия</label>
+                        <input type="text" class="form-control" placeholder="{{vm.user.lastName}}"
+                               ng-model="vm.temporaryUser.lastName" required/>
+                    </div>
+                    <div class="form-group">
+                        <label>Имя</label>
+                        <input type="text" class="form-control" placeholder="{{vm.user.firstName}}"
+                               ng-model="vm.temporaryUser.firstName" required/>
+                    </div>
+                    <div class="form-group">
+                        <label>Отчество</label>
+                        <input type="text" class="form-control" placeholder="{{vm.user.middleName}}"
+                               ng-model="vm.temporaryUser.middleName" required/>
+                    </div>
+                    <div class="form-group">
+                        <label>Логин</label>
+                        <input type="text" class="form-control" placeholder="{{vm.user.username}}"
+                               ng-model="vm.temporaryUser.username" required/>
+                    </div>
+                    <div class="form-group">
+                        <label>Пароль</label>
+                        <input type="password" class="form-control" placeholder="{{vm.user.password}}"
+                               ng-model="vm.temporaryUser.password" required/>
+                    </div>
+                    <button type="submit" ng-disabled="formModifyUser.$invalid" class="btn btn-primary">Сохранить
+                        изменения
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--Создание нового проекта-->
+
+<div id="createProject" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal">×</button>
+                <h4 class="modal-title">Создание нового проекта</h4>
+            </div>
+            <div class="modal-body">
+                <form name="formCreateProject" ng-submit="vm.createProject()" role="form">
+                    <div class="form-group">
+                        <label>Название</label>
+                        <input type="text" class="form-control"
+                               ng-model="vm.temporaryProject.projectname" required/>
+                    </div>
+                    <div class="form-group">
+                        <label>Описание</label>
+                        <input type="text" class="form-control"
+                               ng-model="vm.temporaryProject.description" required/>
+                    </div>
+                    <div class="form-group">
+                        <label>Менеджер</label><br>
+                        <select class="form-control" ng-model="vm.temporaryProject.manager">
+                            <option ng-repeat="user in vm.allUsers" value="{{user.lastName}}"
+                                    ng-if="user.role === 'Manager'">
+                                {{user.lastName}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Разработчики</label><br>
+                        <select class="form-control" ng-model="vm.temporaryProject.developers" multiple>
+                            <option ng-repeat="user in vm.allUsers" value="{{user.lastName}}"
+                                    ng-if="user.role === 'Developer'">
+                                {{user.lastName}}
+                            </option>
+                        </select>
+                    </div>
+                    <button type="submit" ng-disabled="formCreateProject.$invalid" class="btn btn-success">Сохранить
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--Просмотр данных проекта-->
+
+<div id="modalViewProject" class="modal fade viewProject">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal">×</button>
+                <h4 class="modal-title">Просмотр данных проекта</h4>
+            </div>
+            <div class="modal-body">
+                <form name="formViewProject" ng-submit="vm.modifyProject()" role="form">
+                    <div class="form-group">
+                        <label>Название</label>
+                        <p ng-hide="vm.allowChangeProject">{{vm.project.projectname}}</p>
+                        <input ng-show="vm.allowChangeProject" type="text" class="form-control"
+                               ng-model="vm.project.projectname" required/>
+                    </div>
+                    <div class="form-group">
+                        <label>Описание</label>
+                        <p ng-hide="vm.allowChangeProject">{{vm.project.description}}</p>
+                        <input ng-show="vm.allowChangeProject" type="text" class="form-control"
+                               ng-model="vm.project.description" required/>
+                    </div>
+                    <div class="form-group">
+                        <label>Менеджер</label>
+                        <p ng-hide="vm.allowChangeProject">{{vm.project.manager}}</p>
+                        <select class="form-control" ng-show="vm.allowChangeProject" ng-model="vm.project.manager">
+                            <option ng-repeat="user in vm.allUsers" value="{{user.lastName}}"
+                                    ng-if="user.role === 'Manager'">
+                                {{user.lastName}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Разработчики</label>
+                        <p ng-hide="vm.allowChangeProject">{{vm.project.developers}}</p>
+                        <select class="form-control" ng-show="vm.allowChangeProject" ng-model="vm.project.developers"
+                                multiple>
+                            <option ng-repeat="user in vm.allUsers" value="{{user.lastName}}"
+                                    ng-if="user.role === 'Developer'">
+                                {{user.lastName}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Задачи проекта</label>
+                        <p ng-hide="vm.allowChangeProject">{{vm.project.tasks}}</p>
+                        <select class="form-control" ng-show="vm.allowChangeProject" ng-model="vm.project.tasks"
+                                multiple>
+                            <option ng-repeat="task in vm.allTasks" value="{{task.taskname}}">
+                                {{task.taskname}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="checkbox" ng-hide="vm.user.role === 'Developer'">
+                        <label><input type="checkbox" ng-click="vm.toggleAllowChangeProject()">Включить
+                            редактирование</label>
+                    </div>
+                    <button type="submit" ng-show="vm.allowChangeProject" ng-disabled="formViewProject.$invalid"
+                            class="btn btn-primary">Сохранить изменения
+                    </button>
+                    <button ng-show="vm.allowChangeProject" ng-click="vm.deleteProject(vm.project.id)"
+                            class="btn btn-danger">Удалить проект
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--Создание новой задачи-->
+
+<div id="createTask" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal">×</button>
+                <h3 class="modal-title">Создание новой задачи</h3>
+            </div>
+            <div class="modal-body">
+                <form name="formCreateTask" ng-submit="vm.createTask()" role="form">
+                    <div class="form-group">
+                        <label>Название</label>
+                        <input type="text" class="form-control"
+                               ng-model="vm.task.taskname" required/>
+                    </div>
+                    <div class="form-group">
+                        <label>Описание</label>
+                        <input type="text" class="form-control"
+                               ng-model="vm.task.description" required/>
+                    </div>
+                    <div class="form-group">
+                        <label>Проект</label><br>
+                        <select class="form-control" ng-model="vm.task.project">
+                            <option ng-repeat="project in vm.allProjects" value="{{project.projectname}}">
+                                {{project.projectname}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Разработчики</label><br>
+                        <select class="form-control" ng-model="vm.task.developers" multiple>
+                            <option ng-repeat="user in vm.allUsers " ng-if="user.role === 'Developer'"
+                                    value="{{user.lastName}}">
+                                {{user.lastName}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Время выполнения</label>
+                        <input type="text" class="form-control" ng-model="vm.task.time"
+                               required/>
+                    </div>
+                    <button type="submit" ng-disabled="formCreateTask.$invalid" class="btn btn-success">Сохранить
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--Просмотр данных задачи-->
+
+<div id="modalViewTask" class="modal fade viewTask">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal">×</button>
+                <h4 class="modal-title">Просмотр данных задачи</h4>
+            </div>
+            <div class="modal-body">
+                <form name="formViewTask" ng-submit="vm.modifyTask()" role="form">
+                    <div class="form-group">
+                        <label>Название</label>
+                        <p ng-hide="vm.allowChangeTask">{{vm.task.taskname}}</p>
+                        <input ng-show="vm.allowChangeTask" type="text" class="form-control"
+                               ng-model="vm.task.taskname" required/>
+                    </div>
+                    <div class="form-group">
+                        <label>Описание</label>
+                        <p ng-hide="vm.allowChangeTask">{{vm.task.description}}</p>
+                        <input ng-show="vm.allowChangeTask" type="text" class="form-control"
+                               ng-model="vm.task.description" required/>
+                    </div>
+                    <div class="form-group">
+                        <label>Проект</label>
+                        <p ng-hide="vm.allowChangeTask">{{vm.task.project}}</p>
+                        <select class="form-control" ng-show="vm.allowChangeTask" ng-model="vm.task.project">
+                            <option ng-repeat="project in vm.allProjects" value="{{project.projectname}}">
+                                {{project.projectname}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Разработчики</label>
+                        <p ng-hide="vm.allowChangeTask">{{vm.task.developers}}</p>
+                        <select class="form-control" ng-show="vm.allowChangeTask" ng-model="vm.task.developers"
+                                multiple>
+                            <option ng-repeat="user in vm.allUsers" value="{{user.lastName}}"
+                                    ng-if="user.role === 'Developer'">
+                                {{user.lastName}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Статус</label>
+                        <p ng-hide="vm.allowChangeTask">{{vm.task.status}}</p>
+                        <select class="form-control" ng-show="vm.allowChangeTask" ng-model="vm.task.status">
+                            <option value="Новое">Новое</option>
+                            <option value="В разработке">В разработке</option>
+                            <option value="Решено">Решено</option>
+                            <option value="Закрыто">Закрыто</option>
+                        </select>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" ng-click="vm.toggleAllowChangeTask()">Включить
+                            редактирование</label>
+                    </div>
+                    <button type="submit" ng-show="vm.allowChangeTask" ng-disabled="formViewTask.$invalid"
+                            class="btn btn-primary">Сохранить изменения
+                    </button>
+                    <button ng-show="vm.allowChangeTask && vm.user.role != 'Developer'"
+                            ng-click="vm.deleteTask(vm.task.id)" class="btn btn-danger">Удалить задачу
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

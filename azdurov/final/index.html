@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Управление проектами</title>
+    <link rel="stylesheet" href="content/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="static/css/app.css"/>
+</head>
+<body>
+<script src="content/js/jquery-2.2.3.min.js"></script>
+<script src="content/js/jquery.scrollUp.min.js"></script>
+<script src="content/js/jquery.singlePageNav.min.js"></script>
+<script src="content/js/angular.min.js"></script>
+<script src="content/js/angular-route.min.js"></script>
+<script src="content/js/angular-cookies.min.js"></script>
+<script src="content/js/bootstrap.min.js"></script>
+
+<script src="src/app.js"></script>
+<script src="src/services/authentication.js"></script>
+<script src="src/services/flash.js"></script>
+<script src="src/services/project.js"></script>
+<script src="src/services/task.js"></script>
+<script src="src/services/user.js"></script>
+<script src="src/controllers/home.js"></script>
+<script src="src/controllers/login.js"></script>
+<script src="src/controllers/register.js"></script>
+
+<div ng-view></div>
+
+<!-- Footer -->
+<footer id="footer-area">
+    <hr>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <p class="copy">Copyright © 2016 Andrew Zdurov</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
