@@ -10,6 +10,10 @@ function RouterConfig($stateProvider, $urlRouterProvider) {
         .state('taskAngular1', {
             url: '/taskAngular1',
             templateUrl: 'page-taskAngular1.html'
+        })
+        .state('DOM', {
+            url: '/DOM',
+            templateUrl: 'page-DOM.html'
         });
 }
 

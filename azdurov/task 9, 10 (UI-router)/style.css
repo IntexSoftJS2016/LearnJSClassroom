@@ -53,3 +53,11 @@ td {
 .odd{
     background-color: #0f3;
 }
+
+.tree span:hover {
+    font-weight: bold;
+}
+
+.tree span {
+    cursor: pointer;
+}

@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <script src="http://code.angularjs.org/1.2.13/angular.js"></script>
+    <script src="DOM.js"></script>
+</head>
+<body>
+<ul ng-controller="TreeController">
+    <li ng-repeat="data in tree"></li>
+</ul>
+{{data.name}}
+<button ng-click="add(data)">Add node</button>
+<button ng-click="delete(data)" ng-show="data.nodes.length > 0">Delete nodes</button>
+<ul>
+    <li ng-repeat="data in data.nodes"></li>
+</ul>
+
+
+<!--<ul class="tree">-->
+    <!--<li>1 уровень 1-->
+        <!--<ul>-->
+            <!--<li>2 уровень 1-->
+                <!--<ul>-->
+                    <!--<li>3 уровень 1</li>-->
+                    <!--<li>3 уровень 2</li>-->
+                    <!--<li>3 уровень 3</li>-->
+                    <!--<li>3 уровень 4</li>-->
+                    <!--<li>3 уровень 5</li>-->
+                    <!--<li>3 уровень 6</li>-->
+                <!--</ul>-->
+            <!--</li>-->
+            <!--<li>2 уровень 2-->
+                <!--<ul>-->
+                    <!--<li>3 уровень 7</li>-->
+                    <!--<li>3 уровень 8</li>-->
+                    <!--<li>3 уровень 9</li>-->
+                <!--</ul>-->
+            <!--</li>-->
+        <!--</ul>-->
+    <!--</li>-->
+    <!--<li>1 уровень 2-->
+        <!--<ul>-->
+            <!--<li>2 уровень 3-->
+                <!--<ul>-->
+                    <!--<li>3 уровень 10</li>-->
+                    <!--<li>3 уровень 11</li>-->
+                <!--</ul>-->
+
+            <!--</li>-->
+            <!--<li>2 уровень 4-->
+                <!--<ul>-->
+                    <!--<li>3 уровень 12</li>-->
+                    <!--<li>3 уровень 13</li>-->
+                <!--</ul>-->
+            <!--</li>-->
+        <!--</ul>-->
+    <!--</li>-->
+<!--</ul>-->
+</body>
+</html>
